@@ -1,0 +1,210 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FitTrack | Fitness Tracker</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="brand">
+        <i class="fa-solid fa-person-running"></i>
+        <span>FitTrack</span>
+      </div>
+      <p class="tagline">Track · Improve · Stay Healthy</p>
+
+      <nav>
+        <a class="nav-link active" href="#dashboard">
+          <i class="fa-solid fa-house"></i> Dashboard
+        </a>
+        <a class="nav-link" href="#activity">
+          <i class="fa-solid fa-list-check"></i> Activities
+        </a>
+        <a class="nav-link" href="#progress">
+          <i class="fa-solid fa-chart-line"></i> Progress
+        </a>
+      </nav>
+
+      <div class="sidebar-note">
+        <i class="fa-solid fa-seedling"></i>
+        <p>Small steps every day<br>lead to big results!</p>
+      </div>
+    </aside>
+
+    <main class="main-content" id="dashboard">
+      <header class="topbar">
+        <div>
+          <h1>Hello, Fitness Lover! 👋</h1>
+          <p>Your progress matters. Keep going!</p>
+        </div>
+        <div class="today">
+          <i class="fa-regular fa-calendar"></i>
+          <span id="todayDate"></span>
+        </div>
+      </header>
+
+      <section class="stats-grid">
+        <article class="stat-card steps-card">
+          <div class="stat-icon"><i class="fa-solid fa-shoe-prints"></i></div>
+          <p>Daily Steps</p>
+          <h2 id="stepsTotal">0</h2>
+          <small>Goal: 10,000 steps</small>
+          <div class="progress-track">
+            <div class="progress-fill green" id="stepsBar"></div>
+          </div>
+          <small id="stepsPercent">0% of goal</small>
+        </article>
+
+        <article class="stat-card calories-card">
+          <div class="stat-icon"><i class="fa-solid fa-fire"></i></div>
+          <p>Calories Burned</p>
+          <h2 id="caloriesTotal">0</h2>
+          <small>kcal burned today</small>
+          <div class="progress-track">
+            <div class="progress-fill orange" id="caloriesBar"></div>
+          </div>
+          <small>Daily goal: 500 kcal</small>
+        </article>
+
+        <article class="stat-card time-card">
+          <div class="stat-icon"><i class="fa-solid fa-clock"></i></div>
+          <p>Workout Time</p>
+          <h2 id="timeTotal">0</h2>
+          <small>minutes today</small>
+          <div class="progress-track">
+            <div class="progress-fill purple" id="timeBar"></div>
+          </div>
+          <small>Daily goal: 60 minutes</small>
+        </article>
+      </section>
+
+      <section class="motivation">
+        <div>
+          <span class="eyebrow">YOUR DAILY REMINDER</span>
+          <h2>Move your body.<br>Feel the difference.</h2>
+          <p>Every little step counts. Keep building healthy habits!</p>
+          <a href="#activity" class="motivation-btn">Add today's activity</a>
+        </div>
+        <div class="motivation-art">🏃‍♀️🌿☀️</div>
+      </section>
+
+      <section class="content-grid">
+        <div class="panel" id="activity">
+          <div class="section-heading">
+            <div class="heading-icon"><i class="fa-solid fa-plus"></i></div>
+            <div>
+              <h2>Add Fitness Activity</h2>
+              <p>Record your workout and track your progress.</p>
+            </div>
+          </div>
+
+          <form id="activityForm">
+            <label for="activityDate">Date</label>
+            <input type="date" id="activityDate" required>
+
+            <div class="form-row">
+              <div>
+                <label for="steps">Steps Walked</label>
+                <input type="number" id="steps" min="0"
+                  placeholder="e.g. 5000" required>
+              </div>
+              <div>
+                <label for="workout">Workout Type</label>
+                <select id="workout" required>
+                  <option value="">Select workout</option>
+                  <option>Walking</option>
+                  <option>Running</option>
+                  <option>Cycling</option>
+                  <option>Yoga</option>
+                  <option>Gym</option>
+                  <option>Swimming</option>
+                  <option>Other</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div>
+                <label for="duration">Duration (minutes)</label>
+                <input type="number" id="duration" min="1"
+                  placeholder="e.g. 30" required>
+              </div>
+              <div>
+                <label for="calories">Calories Burned (kcal)</label>
+                <input type="number" id="calories" min="0"
+                  placeholder="e.g. 200" required>
+              </div>
+            </div>
+
+            <button type="submit" class="submit-btn">
+              <i class="fa-solid fa-circle-plus"></i> Add Activity
+            </button>
+            <p id="formMessage" class="form-message" aria-live="polite"></p>
+          </form>
+        </div>
+
+        <div class="panel history-panel">
+          <div class="section-heading history-heading">
+            <div>
+              <h2>Activity History</h2>
+              <p>Your recorded workouts</p>
+            </div>
+            <span class="history-count" id="activityCount">0 activities</span>
+          </div>
+
+          <div id="activityList" class="activity-list"></div>
+        </div>
+      </section>
+
+      <section class="panel weekly-panel" id="progress">
+        <div class="section-heading">
+          <div class="heading-icon"><i class="fa-solid fa-bullseye"></i></div>
+          <div>
+            <h2>Today's Progress</h2>
+            <p>Small improvements make a big difference.</p>
+          </div>
+        </div>
+
+        <div class="goal-grid">
+          <div class="goal-item">
+            <span>👟 Steps</span>
+            <strong id="goalSteps">0 / 10,000</strong>
+            <div class="progress-track">
+              <div class="progress-fill green" id="goalStepsBar"></div>
+            </div>
+          </div>
+          <div class="goal-item">
+            <span>🔥 Calories</span>
+            <strong id="goalCalories">0 / 500 kcal</strong>
+            <div class="progress-track">
+              <div class="progress-fill orange" id="goalCaloriesBar"></div>
+            </div>
+          </div>
+          <div class="goal-item">
+            <span>⏱️ Workout</span>
+            <strong id="goalTime">0 / 60 min</strong>
+            <div class="progress-track">
+              <div class="progress-fill purple" id="goalTimeBar"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer>
+        <p>Made with 💚 | <strong>FitTrack</strong> Fitness Tracker</p>
+        <small>CodeAlpha Internship Project</small>
+      </footer>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
